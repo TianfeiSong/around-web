@@ -6,7 +6,7 @@ import Main from "./Main";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
-      localStorage.getItem(TOKEN_KEY) ? true : false
+      !!localStorage.getItem(TOKEN_KEY)
   );
 
   const logout = () => {
@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <TopBar isLoggedIn={isLoggedIn} handleLogout={logout} />
-      <Main />
+      <Main isLoggedIn={isLoggedIn} handleLoggedIn={loggedIn} />
     </div>
   );
 }
