@@ -51,7 +51,7 @@ function Register(props) {
             })
             .catch( error => {
                 console.log('register failed: ', error.message);
-                message.success('Registration failed!');
+                message.error('Registration failed!');
             })
     };
 
