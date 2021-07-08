@@ -4,9 +4,19 @@ import axios from "axios";
 import { Button, Form, Input, message } from "antd";
 import { Link } from "react-router-dom";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { TOKEN_KEY } from "../constants";
+import { useDispatch } from "react-redux";
+import { login } from "../features/loginSlice";
 
-function Login(props) {
-    const { handleLoggedIn } = props;
+function Login() {
+    const dispatch = useDispatch();
+
+    const handleLoggedIn = (token) => {
+        if (token) {
+            localStorage.setItem(TOKEN_KEY, token);
+            dispatch(login());
+        }
+    };
 
     const onFinish = (values) => {
         const { username, password } = values;

@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Redirect, Route, Switch} from "react-router";
 
 import Login from "./Login";
 import Register from "./Register";
 import Home from "./Home";
+import { useSelector } from "react-redux";
 
-function Main(props) {
-    const { isLoggedIn, handleLoggedIn } = props;
+function Main() {
+    const isLoggedIn = useSelector(state => state.loginStatus.isLoggedIn);
 
     const showLogin = () => {
         return isLoggedIn ? (
             <Redirect to="/home" />
         ) : (
-            <Login handleLoggedIn={handleLoggedIn} />
+            <Login />
         );
     };
 
